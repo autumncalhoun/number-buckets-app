@@ -2,8 +2,12 @@ import HomePage from './components/home'
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-center py-32 px-16 bg-white dark:bg-black sm:items-start">
+    <div
+      className="flex w-full h-full items-center justify-center  font-sans dark:bg-black p-4"
+      style={{
+        background: 'linear-gradient(130deg, #f96986 0%, #7b3ffb 100%)',
+      }}>
+      <main className="flex w-full h-full max-w-3xl flex-col items-center py-32 px-16 bg-white dark:bg-black rounded-2xl shadow">
         <HomePage />
       </main>
     </div>

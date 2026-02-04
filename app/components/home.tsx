@@ -23,7 +23,7 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className="flex flex-col items-start gap-6">
+    <div className="flex flex-col w-full h-full">
       <CsvFileUpload onFileSelect={handleFileSelect} />
       {file && (
         <CsvProcessor
