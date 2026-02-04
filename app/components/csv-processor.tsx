@@ -138,14 +138,14 @@ export function CsvProcessor({ file, onParsed, onError }: CsvProcessorProps) {
   if (!file) return null
 
   return (
-    <div className="w-full max-w-md space-y-4">
+    <div className="w-full space-y-4 mt-4">
       {/* Progress bar */}
       {(status === 'detecting' || status === 'parsing') && (
         <div className="space-y-2">
           <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
             {status === 'detecting'
               ? 'Checking for headers…'
-              : 'Processing file…'}
+              : 'Processing CSV file…'}
           </p>
           <div
             className="h-2 w-full overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-700"
@@ -171,7 +171,7 @@ export function CsvProcessor({ file, onParsed, onError }: CsvProcessorProps) {
           <CheckmarkSVG />
           <div>
             <p className="font-medium text-emerald-800 dark:text-emerald-200">
-              File processed successfully
+              CSV file processed successfully
             </p>
             <p className="text-sm text-emerald-700 dark:text-emerald-300">
               {result.rowCount} row{result.rowCount !== 1 ? 's' : ''} parsed

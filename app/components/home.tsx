@@ -33,10 +33,7 @@ export default function HomePage() {
         />
       )}
       {blocks.length > 0 && (
-        <div className="w-full max-w-2xl">
-          <h2 className="mb-3 text-lg font-semibold text-zinc-800 dark:text-zinc-200">
-            Number blocks
-          </h2>
+        <div className="w-full mt-4">
           <NumberBucketsTable blocks={blocks} />
         </div>
       )}

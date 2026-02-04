@@ -2,6 +2,7 @@
 
 import { useCallback, useState } from 'react'
 
+import CheckmarkSVG from '@/app/svgs/checkmark'
 import UploadSVG from '@/app/svgs/upload'
 
 type CsvFileUploadProps = {
@@ -111,13 +112,17 @@ export function CsvFileUpload({
           className="absolute inset-0 cursor-pointer opacity-0"
           aria-label="Upload CSV file"
         />
-        <UploadSVG />
-        <p className="mb-1 text-sm font-medium text-zinc-700 dark:text-zinc-300">
+
+        {!file && <UploadSVG />}
+        <div className="mb-1 font-medium text-zinc-700 dark:text-zinc-300 flex items-center gap-2">
           {file ? file.name : 'Select a CSV file'}
-        </p>
-        <p className="text-xs text-zinc-500 dark:text-zinc-400">
-          (max {maxSizeBytes / 1024 / 1024}mb)
-        </p>
+        </div>
+
+        {!file && (
+          <p className="text-xs text-zinc-500 dark:text-zinc-400">
+            (max {maxSizeBytes / 1024 / 1024}mb)
+          </p>
+        )}
       </div>
       {error && (
         <p className="mt-2 text-sm text-red-600 dark:text-red-400" role="alert">
@@ -128,8 +133,8 @@ export function CsvFileUpload({
         <button
           type="button"
           onClick={clearFile}
-          className="mt-3 text-sm font-medium text-zinc-600 underline hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">
-          Clear file
+          className=" text-sm font-medium text-zinc-600 underline hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100">
+          Start over
         </button>
       )}
     </div>
