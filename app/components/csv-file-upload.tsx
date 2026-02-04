@@ -102,8 +102,8 @@ export function CsvFileUpload({
         }}
         className={`
           relative flex cursor-pointer flex-col items-center justify-center rounded-xl border-2 px-6 py-2 text-center transition-colors
-          ${isDragging ? 'border-violet-500 shadow bg-violet-50dark:bg-zinc-800' : 'border-violet-500 dark:border-zinc-600 dark:bg-zinc-900/50'}
-          hover:border-violet-700 hover:bg-violet-50   w-full
+          ${isDragging ? 'border-violet-500 shadow-md bg-violet-50dark:bg-zinc-800' : 'border-violet-500 dark:border-zinc-600 dark:bg-zinc-900/50'}
+          hover:border-violet-700 hover:bg-violet-50  hover:shadow-md w-full
         `}>
         <input
           type="file"
