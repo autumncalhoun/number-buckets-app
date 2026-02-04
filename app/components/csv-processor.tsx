@@ -2,6 +2,7 @@
 
 import Papa, { type ParseResult } from 'papaparse'
 import { useEffect, useState } from 'react'
+import CheckmarkSVG from '@/app/svgs/checkmark'
 
 // Returns true if the cell contains at least one letter (assume header).
 function firstCellLooksLikeHeader(firstCell: unknown): boolean {
@@ -137,14 +138,14 @@ export function CsvProcessor({ file, onParsed, onError }: CsvProcessorProps) {
   if (!file) return null
 
   return (
-    <div className="w-full max-w-md space-y-4">
+    <div className="w-full space-y-4 mt-4">
       {/* Progress bar */}
       {(status === 'detecting' || status === 'parsing') && (
         <div className="space-y-2">
           <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
             {status === 'detecting'
               ? 'Checking for headers…'
-              : 'Processing file…'}
+              : 'Processing CSV file…'}
           </p>
           <div
             className="h-2 w-full overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-700"
@@ -167,22 +168,10 @@ export function CsvProcessor({ file, onParsed, onError }: CsvProcessorProps) {
           className="flex items-center gap-3 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 dark:border-emerald-800 dark:bg-emerald-950/50"
           role="status"
           aria-live="polite">
-          <svg
-            className="h-5 w-5 shrink-0 text-emerald-600 dark:text-emerald-400"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            aria-hidden>
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M5 13l4 4L19 7"
-            />
-          </svg>
+          <CheckmarkSVG />
           <div>
             <p className="font-medium text-emerald-800 dark:text-emerald-200">
-              File processed successfully
+              CSV file processed successfully
             </p>
             <p className="text-sm text-emerald-700 dark:text-emerald-300">
               {result.rowCount} row{result.rowCount !== 1 ? 's' : ''} parsed
