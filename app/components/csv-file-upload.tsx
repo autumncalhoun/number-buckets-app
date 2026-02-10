@@ -2,7 +2,6 @@
 
 import { useCallback, useState } from 'react'
 
-import CheckmarkSVG from '@/app/svgs/checkmark'
 import UploadSVG from '@/app/svgs/upload'
 
 type CsvFileUploadProps = {
@@ -115,7 +114,7 @@ export function CsvFileUpload({
 
         {!file && <UploadSVG />}
         <div className="mb-1 font-medium text-zinc-700 dark:text-zinc-300 flex items-center gap-2">
-          {file ? file.name : 'Select a CSV file'}
+          {file ? `Source: ${file.name}` : 'Select a CSV file'}
         </div>
 
         {!file && (

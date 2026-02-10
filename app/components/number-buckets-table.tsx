@@ -7,7 +7,7 @@ type NumberBucketsTableProps = {
 }
 
 export function NumberBucketsTable({ blocks }: NumberBucketsTableProps) {
-  if (blocks.length === 0) return null
+  if (blocks.length === 0) return <div>No matches found</div>
 
   return (
     <div className="w-full overflow-x-auto rounded-lg border border-zinc-200 dark:border-zinc-700">

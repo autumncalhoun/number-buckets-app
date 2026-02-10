@@ -3,10 +3,11 @@
 import Papa, { type ParseResult } from 'papaparse'
 import { useEffect, useState } from 'react'
 import CheckmarkSVG from '@/app/svgs/checkmark'
+import Alert from '@/app/components/alert'
 
 // Returns true if the cell contains at least one letter (assume header).
-function firstCellLooksLikeHeader(firstCell: unknown): boolean {
-  const value = String(firstCell ?? '').trim()
+function cellhasAlphaCharacters(contents: unknown): boolean {
+  const value = String(contents ?? '').trim()
   if (!value) return false
   return /[a-zA-Z]/.test(value)
 }
@@ -68,7 +69,7 @@ export function CsvProcessor({ file, onParsed, onError }: CsvProcessorProps) {
 
         const firstRow = previewResult.data?.[0]
         const firstCell = firstRow?.[0]
-        const hasHeader = firstCellLooksLikeHeader(firstCell)
+        const hasHeader = cellhasAlphaCharacters(firstCell)
 
         setStatus('parsing')
         setProgress(10)
@@ -100,9 +101,22 @@ export function CsvProcessor({ file, onParsed, onError }: CsvProcessorProps) {
             complete: (
               completeResult: ParseResult<Record<string, string> | string[]>,
             ) => {
-              if (completeResult.errors.length > 0 && rows.length === 0) {
+              console.log(completeResult)
+              if (completeResult.errors.length > 0) {
                 reject(
                   new Error(completeResult.errors[0]?.message ?? 'Parse error'),
+                )
+              } else if (rows.length === 0) {
+                reject(
+                  new Error(
+                    'The uploaded CSV file does not contain any data rows.',
+                  ),
+                )
+              } else if (cellhasAlphaCharacters(rows[0])) {
+                reject(
+                  new Error(
+                    'The uploaded CSV file contains data that is not numbers. Make sure the first column contains numbers.',
+                  ),
                 )
               } else {
                 setProgress(100)
@@ -139,7 +153,6 @@ export function CsvProcessor({ file, onParsed, onError }: CsvProcessorProps) {
 
   return (
     <div className="w-full space-y-4 mt-4">
-      {/* Progress bar */}
       {(status === 'detecting' || status === 'parsing') && (
         <div className="space-y-2">
           <p className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
@@ -165,15 +178,12 @@ export function CsvProcessor({ file, onParsed, onError }: CsvProcessorProps) {
       {/* Success */}
       {status === 'success' && result && (
         <div
-          className="flex items-center gap-3 rounded-lg border border-emerald-200 bg-emerald-50 px-4 py-3 dark:border-emerald-800 dark:bg-emerald-950/50"
+          className="flex items-center gap-3  px-4 py-3 "
           role="status"
           aria-live="polite">
           <CheckmarkSVG />
           <div>
             <p className="font-medium text-emerald-800 dark:text-emerald-200">
-              CSV file processed successfully
-            </p>
-            <p className="text-sm text-emerald-700 dark:text-emerald-300">
               {result.rowCount} row{result.rowCount !== 1 ? 's' : ''} parsed
               {result.hasHeader ? ' (header row detected)' : ''}.
             </p>
@@ -182,11 +192,7 @@ export function CsvProcessor({ file, onParsed, onError }: CsvProcessorProps) {
       )}
 
       {/* Error */}
-      {status === 'error' && errorMessage && (
-        <p className="text-sm text-red-600 dark:text-red-400" role="alert">
-          {errorMessage}
-        </p>
-      )}
+      {status === 'error' && errorMessage && <Alert message={errorMessage} />}
     </div>
   )
 }
