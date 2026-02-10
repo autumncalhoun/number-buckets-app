@@ -101,7 +101,6 @@ export function CsvProcessor({ file, onParsed, onError }: CsvProcessorProps) {
             complete: (
               completeResult: ParseResult<Record<string, string> | string[]>,
             ) => {
-              console.log(completeResult)
               if (completeResult.errors.length > 0) {
                 reject(
                   new Error(completeResult.errors[0]?.message ?? 'Parse error'),

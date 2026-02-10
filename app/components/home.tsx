@@ -35,7 +35,6 @@ export default function HomePage() {
   const handleSearchChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>) => {
       setSearch(e.target.value)
-      console.log(e.target.value)
     },
     [setSearch],
   )
