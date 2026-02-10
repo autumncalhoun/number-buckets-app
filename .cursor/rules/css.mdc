@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+
+Never use direct text colors - allow colors to come from the theme
