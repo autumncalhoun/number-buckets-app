@@ -3,7 +3,7 @@ import HomePage from './components/home'
 export default function Home() {
   return (
     <div
-      className="flex w-full h-full min-h-screen items-center justify-center  font-sans dark:bg-black p-4"
+      className="flex w-full h-full min-h-screen items-center justify-center  font-sans dark:bg-black p-4 pb-16"
       style={{
         background: 'linear-gradient(130deg, #f96986 0%, #7b3ffb 100%)',
       }}>
