@@ -1,6 +1,6 @@
 'use client'
 
-import type { SerialBlock } from '@/app/lib/serial-blocks'
+import type { SerialBlock } from '@/src/lib/serial-blocks'
 
 type NumberBucketsTableProps = {
   blocks: SerialBlock[]

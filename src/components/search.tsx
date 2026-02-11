@@ -1,4 +1,4 @@
-import SearchSVG from '@/app/svgs/search'
+import SearchSVG from '@/src/svgs/search'
 
 export default function Search({
   value,

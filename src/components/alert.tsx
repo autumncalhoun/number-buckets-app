@@ -1,4 +1,4 @@
-import ErrorSVG from '@/app/svgs/error'
+import ErrorSVG from '@/src/svgs/error'
 
 export default function Alert({ message }: { message: string }) {
   return (

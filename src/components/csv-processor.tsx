@@ -2,8 +2,8 @@
 
 import Papa, { type ParseResult } from 'papaparse'
 import { useEffect, useState } from 'react'
-import CheckmarkSVG from '@/app/svgs/checkmark'
-import Alert from '@/app/components/alert'
+import CheckmarkSVG from '@/src/svgs/checkmark'
+import Alert from '@/src/components/alert'
 
 // Returns true if the cell contains at least one letter (assume header).
 function cellhasAlphaCharacters(contents: unknown): boolean {

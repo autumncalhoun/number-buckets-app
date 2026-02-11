@@ -3,15 +3,15 @@
 import {
   groupIntoSerialBlocks,
   type SerialBlock,
-} from '@/app/lib/serial-blocks'
+} from '@/src/lib/serial-blocks'
 import { useCallback, useMemo, useState } from 'react'
 import { CsvFileUpload } from './csv-file-upload'
 import { CsvProcessor, ParsedCsvResult } from './csv-processor'
 import { NumberBucketsTable } from './number-buckets-table'
-import CsvFileDownload from '@/app/components/csv-file-download'
+import CsvFileDownload from '@/src/components/csv-file-download'
 import Papa from 'papaparse'
-import Search from '@/app/components/search'
-import useDebounce from '@/app/hooks/use-debounce'
+import Search from '@/src/components/search'
+import useDebounce from '@/src/hooks/use-debounce'
 
 export default function HomePage() {
   const [file, setFile] = useState<File | null>(null)

@@ -2,7 +2,7 @@
 
 import { useCallback, useState } from 'react'
 
-import UploadSVG from '@/app/svgs/upload'
+import UploadSVG from '@/src/svgs/upload'
 
 type CsvFileUploadProps = {
   onFileSelect?: (file: File | null) => void
